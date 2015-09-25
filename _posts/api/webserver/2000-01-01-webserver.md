@@ -13,6 +13,14 @@ Using an embedded web server module called [Mongoose](http://code.google.com/p/m
 
 To start using, you must `require` a reference to the `webserver` module:
 
-```javascript
+```js
 var webserver = require('webserver');
+var server = webserver.create();
+server.linsten(4000 , function(request , response){
+    response.setHeader('Content-Type', 'text/plain;charset=utf-8');
+    response.statusCode = 200;
+    response.write('request : \n\n' + JSON.stringify(request , null , 4));
+    response.close();
+});
+console.log('Server running at http://127.0.0.1:4000/');
 ```
